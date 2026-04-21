@@ -5,6 +5,14 @@
 [ext_resource type="Script" uid="uid://g3iu80jf5jj6" path="res://scripts/player.gd" id="3_iywne"]
 [ext_resource type="Script" uid="uid://vhi1c8r80jk2" path="res://scripts/ui.gd" id="4_lbhrr"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
+bg_color = Color(0.7826191, 0.21048108, 0.2324234, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywne"]
+bg_color = Color(0.23668984, 0.7145914, 0.13824767, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p57ef"]
+
 [node name="Game" type="Node2D" unique_id=2047480733]
 
 [node name="Background" type="ColorRect" parent="." unique_id=23790392]
@@ -20,10 +28,17 @@ position = Vector2(800, 200)
 script = ExtResource("2_lbhrr")
 
 [node name="Sprite" type="ColorRect" parent="Boss" unique_id=1808727692]
-offset_left = -419.0
-offset_top = -84.0
-offset_right = 97.0
-offset_bottom = 248.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -418.0
+offset_top = -91.0
+offset_right = 98.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.6651851, 0.24780053, 0.24780053, 1)
 
 [node name="Player" type="Node2D" parent="." unique_id=1834210056]
@@ -31,10 +46,17 @@ position = Vector2(200, 400)
 script = ExtResource("3_iywne")
 
 [node name="Sprite" type="ColorRect" parent="Player" unique_id=1170271854]
-offset_left = 385.0
-offset_top = 100.0
-offset_right = 492.0
-offset_bottom = 263.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 383.0
+offset_top = 92.0
+offset_right = 490.0
+offset_bottom = 255.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.5847179, 0.7373294, 0.95468724, 1)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=445937826]
@@ -54,27 +76,55 @@ offset_bottom = 622.0
 text = "Couleur demandée :"
 
 [node name="BossLife" type="ProgressBar" parent="UI" unique_id=1611639124]
-offset_left = 36.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -607.0
 offset_top = 30.0
-offset_right = 1250.0
+offset_right = 607.0
 offset_bottom = 57.0
-value = 100.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_lbhrr")
+max_value = 1000000.0
+value = 1000000.0
+show_percentage = false
+
+[node name="BossHPLabel" type="Label" parent="UI" unique_id=537453799]
+offset_left = 562.0
+offset_top = 30.0
+offset_right = 729.0
+offset_bottom = 53.0
 
 [node name="TimerBar" type="ProgressBar" parent="UI" unique_id=411077557]
-offset_left = 30.0
-offset_top = 690.0
-offset_right = 1250.0
-offset_bottom = 717.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -610.0
+offset_top = -27.0
+offset_right = 610.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="PlayerLife" type="ProgressBar" parent="UI" unique_id=595334345]
-offset_left = 964.0
-offset_top = 474.0
-offset_right = 1264.0
-offset_bottom = 501.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = 130.0
+offset_right = -30.0
+offset_bottom = 157.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_iywne")
 value = 100.0
 
 [node name="SpecialBar" type="ProgressBar" parent="UI" unique_id=1285142362]
-offset_left = 965.0
-offset_top = 511.0
-offset_right = 1265.0
-offset_bottom = 538.0
+offset_left = 950.0
+offset_top = 530.0
+offset_right = 1250.0
+offset_bottom = 557.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_p57ef")

@@ -1,19 +1,70 @@
 extends Node2D
 
 var color_mechanic
+var player
+
+# Types d'attaques
+enum AttackType { QUICK, HEAVY }
+
+# Timers séparés pour chaque attaque
+var quick_attack_timer = 0.0
+var heavy_attack_timer = 0.0
+var quick_attack_interval = 3.5   # attaque rapide toutes les 3s
+var heavy_attack_interval = 10.0   # attaque lourde toutes les 8s
+var color_attack_interval = 2.5   # combo couleur toutes les 5s
+var color_attack_timer = 0.0
+var projectile_scene = preload("res://scenes/projectile.tscn")
 
 func _ready():
+	player = get_node("../Player")
 	color_mechanic = get_node("../ColorMechanic")
-	# Lance une attaque toutes les 4 secondes
-	var timer = Timer.new()
-	add_child(timer)
-	timer.wait_time = 4.0
-	timer.autostart = true
-	timer.timeout.connect(_launch_attack)
-	timer.start()
+	# Décale les timers pour ne pas tout avoir en même temps
+	quick_attack_timer = quick_attack_interval
+	heavy_attack_timer = heavy_attack_interval
+	color_attack_timer = color_attack_interval
 
-func _launch_attack():
-	# Choisit une couleur au hasard parmi les 6
+func _process(delta):
+	# Si le boss fait un combo couleur, il n'attaque pas
+	if color_mechanic.is_active:
+		return
+	
+	# Timer attaque rapide
+	quick_attack_timer -= delta
+	if quick_attack_timer <= 0:
+		quick_attack_timer = quick_attack_interval
+		_quick_attack()
+	
+	# Timer attaque lourde
+	heavy_attack_timer -= delta
+	if heavy_attack_timer <= 0:
+		heavy_attack_timer = heavy_attack_interval
+		_heavy_attack()
+	
+	# Timer combo couleur
+	color_attack_timer -= delta
+	if color_attack_timer <= 0:
+		color_attack_timer = color_attack_interval
+		_launch_color_attack()
+
+func _quick_attack():
+	var projectile = projectile_scene.instantiate()
+	get_parent().add_child(projectile)
+	projectile.init(position, player.position, 8)
+	print(" Attaque rapide — projectile lancé !")
+	_check_player_death()
+
+func _heavy_attack():
+	var damage = 20
+	player.health -= damage
+	player.health = clamp(player.health, 0, 100)
+	print("Attaque LOURDE du boss ! Dégâts : ", damage, " | Vie joueur : ", player.health)
+	_check_player_death()
+	
+func _check_player_death():
+	if player.health <= 0:
+		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+
+func _launch_color_attack():
 	var random_color = randi() % 6
 	color_mechanic.start_attack(random_color)
-	print("Boss attaque avec la couleur : ", random_color)
+	print("Boss lance un combo couleur : ", random_color)

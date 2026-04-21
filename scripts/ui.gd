@@ -28,11 +28,22 @@ func _ready():
 	color_mechanic.combo_fail.connect(_on_fail)
 	print("UI prêt - noeuds trouvés : ", color_mechanic, player)
 
+func format_number(n: int) -> String:
+	var s = str(n)
+	var result = ""
+	var count = 0
+	for i in range(s.length() - 1, -1, -1):
+		if count > 0 and count % 3 == 0:
+			result = " " + result
+		result = s[i] + result
+		count += 1
+	return result
+
 func _process(_delta):
 	if color_mechanic == null or player == null:
 		return
 
-	# Timer
+	# Timer et couleur demandée
 	if color_mechanic.is_active:
 		var ratio = color_mechanic.time_left / color_mechanic.time_limit
 		$TimerBar.value = ratio * 100
@@ -47,6 +58,11 @@ func _process(_delta):
 	# Barres de vie
 	$PlayerLife.value = player.health
 	$BossLife.value = player.boss_health
+	$BossLife.show_percentage = false
+	$BossHPLabel.text = format_number(player.boss_health) + " / 1 000 000"
+
+	# Barre spéciale
+	$SpecialBar.value = player.special_charge
 
 func _on_success(_color):
 	$AttackLabel.text = "BIEN JOUE !"
