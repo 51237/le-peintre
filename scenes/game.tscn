@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://6ymlk5m4nssd"]
+
+[ext_resource type="Script" uid="uid://bh3qscanm4pb0" path="res://scripts/color_mechanic.gd" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://cgfyyhu5i5v5l" path="res://scripts/boss.gd" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://g3iu80jf5jj6" path="res://scripts/player.gd" id="3_iywne"]
+
+[node name="Game" type="Node2D" unique_id=2047480733]
+
+[node name="ColorMechanic" type="Node" parent="." unique_id=625533711]
+script = ExtResource("1_lnu2h")
+
+[node name="Boss" type="Node2D" parent="." unique_id=1638887598]
+script = ExtResource("2_lbhrr")
+
+[node name="Player" type="Node2D" parent="." unique_id=1834210056]
+script = ExtResource("3_iywne")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=445937826]
+
+[node name="ColorTarget" type="ColorRect" parent="UI" unique_id=1394576172]
+offset_left = 590.0
+offset_top = 330.0
+offset_right = 690.0
+offset_bottom = 430.0
+
+[node name="AttackLabel" type="Label" parent="UI" unique_id=212307644]
+offset_left = 540.0
+offset_top = 300.0
+offset_right = 696.0
+offset_bottom = 323.0
+text = "Couleur demandée :"
+
+[node name="BossLife" type="ProgressBar" parent="UI" unique_id=1611639124]
+offset_left = 950.0
+offset_top = 30.0
+offset_right = 1250.0
+offset_bottom = 57.0
+value = 100.0
+
+[node name="TimerBar" type="ProgressBar" parent="UI" unique_id=411077557]
+offset_left = 30.0
+offset_top = 690.0
+offset_right = 1250.0
+offset_bottom = 717.0
+
+[node name="PlayerLife" type="ProgressBar" parent="UI" unique_id=595334345]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 330.0
+offset_bottom = 57.0
+value = 100.0
