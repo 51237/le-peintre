@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Le Peintre 1.0"
-run/main_scene="uid://6ymlk5m4nssd"
+run/main_scene="uid://c2mwwem4efv1"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
