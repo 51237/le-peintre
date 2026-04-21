@@ -6,3 +6,15 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_le47n")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=430440677]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "VICTOIRE !"
+
+[node name="SubLabel" type="Label" parent="." unique_id=202854618]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Appuyer sur ESPACE pour rejouer"
