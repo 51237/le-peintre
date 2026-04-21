@@ -39,8 +39,12 @@ func _on_success(_color):
 	boss_health -= 15
 	boss_health = clamp(boss_health, 0, 100)
 	print("Boss life : ", boss_health)
+	if boss_health <= 0:
+		get_tree().change_scene_to_file("res://scenes/victory.tscn")
 
 func _on_fail():
 	health -= 20
 	health = clamp(health, 0, 100)
 	print("Player life : ", health)
+	if health <= 0:
+		get_tree().change_scene_to_file("res://scenes/gameover.tscn")

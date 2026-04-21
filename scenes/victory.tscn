@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://iou7spnfx7sb"]
+
+[ext_resource type="Script" uid="uid://ceo8tw15aduk0" path="res://scripts/victory.gd" id="1_le47n"]
+
+[node name="Victory" type="Control" unique_id=2099031339]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_le47n")
