@@ -4,6 +4,8 @@ var color_mechanic
 var pressed_buttons = []
 var health = 100
 var boss_health = 100
+var attack_cooldown = false
+var special_charge = 0.0  # de 0 à 100
 
 func _ready():
 	color_mechanic = get_node("../ColorMechanic")
@@ -18,6 +20,12 @@ func _input(event):
 			_press_button(1)
 		elif event.keycode == KEY_E:
 			_press_button(2)
+		elif event.keycode == KEY_R:
+			_simple_attack()
+		elif event.keycode == KEY_SPACE:
+			_special_attack()
+		elif event.keycode == KEY_F:
+			_dodge()
 
 	if event is InputEventKey and not event.pressed:
 		if event.keycode == KEY_A:
@@ -35,10 +43,43 @@ func _press_button(btn: int):
 			color_mechanic.is_active = false
 			color_mechanic.emit_signal("combo_success", color_mechanic.current_color)
 
+func _simple_attack():
+	if attack_cooldown:
+		return
+	var damage = 5
+	boss_health -= damage
+	boss_health = clamp(boss_health, 0, 100)
+	special_charge += 5
+	special_charge = clamp(special_charge, 0, 100)
+	print("Attaque simple — dégâts : ", damage, " | Charge : ", special_charge)
+	if boss_health <= 0:
+		get_tree().change_scene_to_file("res://scenes/victory.tscn")
+	attack_cooldown = true
+	await get_tree().create_timer(0.5).timeout
+	attack_cooldown = false
+
+func _special_attack():
+	if special_charge < 100:
+		print("Charge insuffisante : ", special_charge, "/100")
+		return
+	# Grosse attaque !
+	boss_health -= 40
+	boss_health = clamp(boss_health, 0, 100)
+	special_charge = 0
+	print("ATTAQUE SPECIALE ! Boss life : ", boss_health)
+	if boss_health <= 0:
+		get_tree().change_scene_to_file("res://scenes/victory.tscn")
+
+func _dodge():
+	print("Esquive !")
+	# On ajoutera l'invincibilité après
+
 func _on_success(_color):
 	boss_health -= 15
 	boss_health = clamp(boss_health, 0, 100)
-	print("Boss life : ", boss_health)
+	special_charge += 20
+	special_charge = clamp(special_charge, 0, 100)
+	print("Boss life : ", boss_health, " | Charge : ", special_charge)
 	if boss_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/victory.tscn")
 

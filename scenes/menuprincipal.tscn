@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c2mwwem4efv1"]
 
-[ext_resource type="Script" uid="uid://dg1rrbgbtcl01" path="res://menuprincipal.gd" id="1_ivno5"]
+[ext_resource type="Script" uid="uid://dg1rrbgbtcl01" path="res://scripts/menuprincipal.gd" id="1_ivno5"]
 
 [sub_resource type="Gradient" id="Gradient_s16su"]
 offsets = PackedFloat32Array(0, 0.050480768, 1)
@@ -13,10 +13,10 @@ gradient = SubResource("Gradient_s16su")
 font_size = 40
 
 [node name="menuprincipal" type="TextureRect" unique_id=1821210080]
-offset_left = 1.0
-offset_top = 133.0
-offset_right = 1277.0
-offset_bottom = 849.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 1284.0
+offset_bottom = 716.0
 texture = SubResource("GradientTexture1D_js3ya")
 script = ExtResource("1_ivno5")
 
