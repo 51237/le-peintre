@@ -9,8 +9,8 @@ enum AttackType { QUICK, HEAVY }
 # Timers séparés pour chaque attaque
 var quick_attack_timer = 0.0
 var heavy_attack_timer = 0.0
-var quick_attack_interval = 3.5   # attaque rapide toutes les 3.5s
-var heavy_attack_interval = 4.0  # attaque lourde toutes les 10s
+var quick_attack_interval = 4   # attaque rapide toutes les 3.5s
+var heavy_attack_interval = 10.0  # attaque lourde toutes les 10s
 var color_attack_interval = 2.5   # combo couleur toutes les 5s
 var color_attack_timer = 0.0
 var projectile_scene = preload("res://scenes/projectile.tscn")

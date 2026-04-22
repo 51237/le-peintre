@@ -69,6 +69,11 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 8.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
@@ -112,10 +117,21 @@ position = Vector2(200, 400)
 script = ExtResource("3_iywne")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1788796783]
-position = Vector2(421.99997, 148)
+position = Vector2(424.99997, 138)
 scale = Vector2(0.5072918, 0.5367461)
 sprite_frames = SubResource("SpriteFrames_ir15t")
 animation = &"attack"
+
+[node name="FmodListener2D" type="FmodListener2D" parent="Player" unique_id=1170082835]
+position = Vector2(-200, -400)
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="Player" unique_id=1929891227]
+event_name = "event:/Attack"
+event_guid = "{29faecdc-1da3-49ff-a768-16dd80f65e17}"
+fmod_parameters/Attack/id = 7893992033020563427
+fmod_parameters/Attack = "Value A"
+fmod_parameters/Attack/labels = PackedStringArray("Value A")
+fmod_parameters/Attack/variant_type = 4
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=445937826]
 script = ExtResource("4_lbhrr")
@@ -186,3 +202,6 @@ offset_top = 530.0
 offset_right = 1250.0
 offset_bottom = 557.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_p57ef")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=1557681322]
+bank_paths = ["res:///Master.bank", "res:///Master.strings.bank"]

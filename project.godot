@@ -15,10 +15,19 @@ run/main_scene="uid://c2mwwem4efv1"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ArduinoManager="*uid://cj1dl0olilo8r"
+FmodManager="*uid://cds10pm7hwn3p"
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/gdserial/plugin.cfg")
 
 [physics]
 
