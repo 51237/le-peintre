@@ -1,38 +1,16 @@
 [gd_scene format=3 uid="uid://c2mwwem4efv1"]
 
 [ext_resource type="Script" uid="uid://dg1rrbgbtcl01" path="res://scripts/menuprincipal.gd" id="1_ivno5"]
-
-[sub_resource type="Gradient" id="Gradient_s16su"]
-offsets = PackedFloat32Array(0, 0.050480768, 1)
-colors = PackedColorArray(0.9843137, 0, 0.80784315, 1, 0.9843137, 0, 0.80784315, 1, 0.9843137, 0, 0.80784315, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_js3ya"]
-gradient = SubResource("Gradient_s16su")
-
-[sub_resource type="LabelSettings" id="LabelSettings_ptpru"]
-font_size = 40
+[ext_resource type="Texture2D" uid="uid://emjin2yyuvf" path="res://assets/sprites/background_menu.png" id="1_x4nhi"]
 
 [node name="menuprincipal" type="TextureRect" unique_id=1821210080]
-offset_left = 4.0
-offset_top = -4.0
-offset_right = 1284.0
-offset_bottom = 716.0
-texture = SubResource("GradientTexture1D_js3ya")
+offset_left = -27.0
+offset_top = -54.0
+offset_right = 1274.0
+offset_bottom = 815.0
+texture = ExtResource("1_x4nhi")
+expand_mode = 1
 script = ExtResource("1_ivno5")
-
-[node name="Label" type="Label" parent="." unique_id=1098514695]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -132.0
-offset_top = 128.0
-offset_right = 83.0
-offset_bottom = 241.0
-grow_horizontal = 2
-text = "LE PEINTRE
-"
-label_settings = SubResource("LabelSettings_ptpru")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2110612189]
 layout_mode = 1

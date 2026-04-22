@@ -29,6 +29,7 @@ func _process(delta):
 			   2 * (1 - t) * t * control_point + \
 			   t * t * end_pos
 
+
 func _on_hit():
 	var player = get_node("/root/Game/Player")
 	print("is_dodging : ", player.is_dodging)

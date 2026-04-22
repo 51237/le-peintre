@@ -13,10 +13,14 @@ var original_position = Vector2.ZERO
 var dodge_progress = 0.0
 var dodge_duration = 0.6  # durée du saut en secondes
 
+@onready var anim = $AnimatedSprite2D
+
 func _ready():
 	color_mechanic = get_node("../ColorMechanic")
 	color_mechanic.combo_success.connect(_on_success)
 	color_mechanic.combo_fail.connect(_on_fail)
+	anim.play("idle")  # au démarrage lance l'idle
+	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -52,6 +56,8 @@ func _press_button(btn: int):
 func _simple_attack():
 	if attack_cooldown:
 		return
+	attack_cooldown = true  # ← bloque immédiatement
+	anim.play("attack")
 	var damage = 2000
 	boss_health -= damage
 	boss_health = clamp(boss_health, 0, 1000000)
@@ -61,9 +67,11 @@ func _simple_attack():
 	if boss_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/victory.tscn")
 		return
-	attack_cooldown = true
-	await get_tree().create_timer(0.5).timeout
-	if is_inside_tree():
+
+func _on_animated_sprite_2d_animation_finished():
+	print("animation finie : ", anim.animation)
+	if anim.animation == "attack":
+		anim.play("idle")
 		attack_cooldown = false
 
 func _special_attack():

@@ -52,19 +52,17 @@ func _quick_attack():
 	get_parent().add_child(projectile)
 	projectile.z_index = 10
 	var spawn_pos = Vector2(position.x - 300, position.y)
-	var target_pos = Vector2(player.position.x +250, player.position.y +200)
-	projectile.init(spawn_pos, target_pos, 8, Vector2(-550, -250))
+	var target_pos = Vector2(player.position.x +400, player.position.y +200)
+	projectile.init(spawn_pos, target_pos, 8, Vector2(-650, -250))
 	print("Attaque rapide lancée !")
 
 func _heavy_attack():
 	var projectile = heavy_projectile_scene.instantiate()
 	get_parent().add_child(projectile)
 	projectile.z_index = 10
-	# Part du bord droit du boss
-	var spawn_pos = Vector2(position.x +100, position.y)
-	var target_pos = Vector2(player.position.x - 250, player.position.y + 200)
-	# Dégâts plus lourds
-	projectile.init(spawn_pos, target_pos, 20, Vector2(550, 400))
+	var spawn_pos = Vector2(position.x + 100, position.y)
+	var target_pos = Vector2(player.position.x + 400, player.position.y +200)
+	projectile.init(spawn_pos, target_pos, 20, Vector2(650, 250))
 	print("Attaque lourde lancée !")
 	
 func _check_player_death():

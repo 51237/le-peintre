@@ -7,10 +7,10 @@ enum PaintColor { RED, BLUE, YELLOW, PURPLE, ORANGE, GREEN }
 const COLOR_COMBOS = {
 	PaintColor.RED:    [0],       # bouton rouge seul
 	PaintColor.BLUE:   [1],       # bouton bleu seul
-	PaintColor.YELLOW: [2],       # bouton jaune seul
+	PaintColor.YELLOW: [2],       # bouton jaune seul vert
 	PaintColor.PURPLE: [0, 1],   # rouge + bleu
 	PaintColor.ORANGE: [0, 2],   # rouge + jaune
-	PaintColor.GREEN:  [1, 2],   # bleu + jaune
+	PaintColor.GREEN:  [1, 2],   # bleu + jaune violet jaune cyan
 }
 
 var current_color = PaintColor.RED
