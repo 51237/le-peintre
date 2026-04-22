@@ -13,7 +13,6 @@ var quick_attack_interval = 3.5   # attaque rapide toutes les 3s
 var heavy_attack_interval = 10.0   # attaque lourde toutes les 8s
 var color_attack_interval = 2.5   # combo couleur toutes les 5s
 var color_attack_timer = 0.0
-var projectile_scene = preload("res://scenes/projectile.tscn")
 
 func _ready():
 	player = get_node("../Player")
@@ -47,10 +46,10 @@ func _process(delta):
 		_launch_color_attack()
 
 func _quick_attack():
-	var projectile = projectile_scene.instantiate()
-	get_parent().add_child(projectile)
-	projectile.init(position, player.position, 8)
-	print(" Attaque rapide — projectile lancé !")
+	var damage = 8
+	player.health -= damage
+	player.health = clamp(player.health, 0, 100)
+	print("Attaque rapide ! Vie joueur : ", player.health)
 	_check_player_death()
 
 func _heavy_attack():

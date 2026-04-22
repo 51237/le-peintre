@@ -1,6 +1,5 @@
-[gd_scene format=3 uid="uid://dg5uqm0h7ypfv"]
+[gd_scene format=3 uid="uid://cvr5jo8go3wb3"]
 
-[ext_resource type="Script" uid="uid://xurjgs04dbj0" path="res://scripts/projectile.gd" id="1_q3m7n"]
 [ext_resource type="Texture2D" uid="uid://dn513m4gfohrl" path="res://assets/vfx/BundleV01/Cure/Cure.png" id="2_softn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6q2a6"]
@@ -128,7 +127,6 @@ radius = 20.0
 
 [node name="Projectile" type="Area2D" unique_id=1797744367]
 z_index = 10
-script = ExtResource("1_q3m7n")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2103893842]
 sprite_frames = SubResource("SpriteFrames_m0b1s")
