@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://veoxjylsrtgx"]
+
+[ext_resource type="Script" uid="uid://xurjgs04dbj0" path="res://scripts/projectile.gd" id="1_cl038"]
+
+[node name="HeavyProjectile" type="Node2D" unique_id=564381318]
+script = ExtResource("1_cl038")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=883125838]
+offset_right = 40.0
+offset_bottom = 40.0

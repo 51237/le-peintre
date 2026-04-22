@@ -7,14 +7,26 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_le47n")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1317184655]
+layout_mode = 0
+offset_right = 1277.0
+offset_bottom = 721.0
+color = Color(0.26854652, 0.57583827, 7.70092e-07, 1)
+
 [node name="TitleLabel" type="Label" parent="." unique_id=430440677]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 517.0
+offset_top = 226.0
+offset_right = 765.0
+offset_bottom = 295.0
+theme_override_font_sizes/font_size = 50
 text = "VICTOIRE !"
 
 [node name="SubLabel" type="Label" parent="." unique_id=202854618]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 421.0
+offset_top = 350.0
+offset_right = 679.0
+offset_bottom = 373.0
+theme_override_font_sizes/font_size = 27
 text = "Appuyer sur ESPACE pour rejouer"

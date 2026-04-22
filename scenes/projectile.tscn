@@ -1,136 +1,14 @@
 [gd_scene format=3 uid="uid://cvr5jo8go3wb3"]
 
-[ext_resource type="Texture2D" uid="uid://dn513m4gfohrl" path="res://assets/vfx/BundleV01/Cure/Cure.png" id="2_softn"]
+[ext_resource type="Script" uid="uid://xurjgs04dbj0" path="res://scripts/projectile.gd" id="1_q3m7n"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6q2a6"]
-atlas = ExtResource("2_softn")
-region = Rect2(0, 0, 128, 2944)
+[node name="Projectile" type="Node2D" unique_id=1108005093]
+script = ExtResource("1_q3m7n")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_byeak"]
-atlas = ExtResource("2_softn")
-region = Rect2(128, 0, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jxwu6"]
-atlas = ExtResource("2_softn")
-region = Rect2(256, 0, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w7nm8"]
-atlas = ExtResource("2_softn")
-region = Rect2(384, 0, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6c2e5"]
-atlas = ExtResource("2_softn")
-region = Rect2(0, 2944, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pl1gp"]
-atlas = ExtResource("2_softn")
-region = Rect2(128, 2944, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ejmht"]
-atlas = ExtResource("2_softn")
-region = Rect2(256, 2944, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_031o2"]
-atlas = ExtResource("2_softn")
-region = Rect2(384, 2944, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xo60o"]
-atlas = ExtResource("2_softn")
-region = Rect2(0, 5888, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mxgir"]
-atlas = ExtResource("2_softn")
-region = Rect2(128, 5888, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rimnf"]
-atlas = ExtResource("2_softn")
-region = Rect2(256, 5888, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l47rv"]
-atlas = ExtResource("2_softn")
-region = Rect2(384, 5888, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fooc5"]
-atlas = ExtResource("2_softn")
-region = Rect2(0, 8832, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sbbd4"]
-atlas = ExtResource("2_softn")
-region = Rect2(128, 8832, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g1ida"]
-atlas = ExtResource("2_softn")
-region = Rect2(256, 8832, 128, 2944)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xfonq"]
-atlas = ExtResource("2_softn")
-region = Rect2(384, 8832, 128, 2944)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_m0b1s"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6q2a6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_byeak")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxwu6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w7nm8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6c2e5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pl1gp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ejmht")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_031o2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xo60o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mxgir")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rimnf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l47rv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fooc5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sbbd4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g1ida")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xfonq")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6aapk"]
-radius = 20.0
-
-[node name="Projectile" type="Area2D" unique_id=1797744367]
-z_index = 10
-
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2103893842]
-sprite_frames = SubResource("SpriteFrames_m0b1s")
-frame_progress = 0.7612066
-
-[node name="Shape" type="CollisionShape2D" parent="." unique_id=202329682]
-shape = SubResource("CircleShape2D_6aapk")
+[node name="Sprite" type="ColorRect" parent="." unique_id=829681487]
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+color = Color(0.9627431, 0.8937523, 0.98705953, 1)
+metadata/_edit_use_anchors_ = true

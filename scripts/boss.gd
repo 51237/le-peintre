@@ -9,10 +9,12 @@ enum AttackType { QUICK, HEAVY }
 # Timers séparés pour chaque attaque
 var quick_attack_timer = 0.0
 var heavy_attack_timer = 0.0
-var quick_attack_interval = 3.5   # attaque rapide toutes les 3s
-var heavy_attack_interval = 10.0   # attaque lourde toutes les 8s
+var quick_attack_interval = 3.5   # attaque rapide toutes les 3.5s
+var heavy_attack_interval = 4.0  # attaque lourde toutes les 10s
 var color_attack_interval = 2.5   # combo couleur toutes les 5s
 var color_attack_timer = 0.0
+var projectile_scene = preload("res://scenes/projectile.tscn")
+var heavy_projectile_scene = preload("res://scenes/heavy_projectile.tscn")
 
 func _ready():
 	player = get_node("../Player")
@@ -46,18 +48,24 @@ func _process(delta):
 		_launch_color_attack()
 
 func _quick_attack():
-	var damage = 8
-	player.health -= damage
-	player.health = clamp(player.health, 0, 100)
-	print("Attaque rapide ! Vie joueur : ", player.health)
-	_check_player_death()
+	var projectile = projectile_scene.instantiate()
+	get_parent().add_child(projectile)
+	projectile.z_index = 10
+	var spawn_pos = Vector2(position.x - 300, position.y)
+	var target_pos = Vector2(player.position.x +250, player.position.y +200)
+	projectile.init(spawn_pos, target_pos, 8, Vector2(-550, -250))
+	print("Attaque rapide lancée !")
 
 func _heavy_attack():
-	var damage = 20
-	player.health -= damage
-	player.health = clamp(player.health, 0, 100)
-	print("Attaque LOURDE du boss ! Dégâts : ", damage, " | Vie joueur : ", player.health)
-	_check_player_death()
+	var projectile = heavy_projectile_scene.instantiate()
+	get_parent().add_child(projectile)
+	projectile.z_index = 10
+	# Part du bord droit du boss
+	var spawn_pos = Vector2(position.x +100, position.y)
+	var target_pos = Vector2(player.position.x - 250, player.position.y + 200)
+	# Dégâts plus lourds
+	projectile.init(spawn_pos, target_pos, 20, Vector2(550, 400))
+	print("Attaque lourde lancée !")
 	
 func _check_player_death():
 	if player.health <= 0:

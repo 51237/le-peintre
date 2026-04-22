@@ -7,6 +7,12 @@ var boss_health = 1000000
 var attack_cooldown = false
 var special_charge = 0.0  # de 0 à 100
 
+var is_dodging = false
+var dodge_cooldown = false
+var original_position = Vector2.ZERO
+var dodge_progress = 0.0
+var dodge_duration = 0.6  # durée du saut en secondes
+
 func _ready():
 	color_mechanic = get_node("../ColorMechanic")
 	color_mechanic.combo_success.connect(_on_success)
@@ -70,10 +76,15 @@ func _special_attack():
 	print("ATTAQUE SPECIALE ! Boss life : ", boss_health)
 	if boss_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/victory.tscn")
-
+		
 func _dodge():
+	if is_dodging or dodge_cooldown:
+		print("Esquive non disponible !")
+		return
+	is_dodging = true
+	original_position = position
+	dodge_progress = 0.0
 	print("Esquive !")
-	# On ajoutera l'invincibilité après
 
 func _on_success(_color):
 	boss_health -= 50000
@@ -90,3 +101,21 @@ func _on_fail():
 	print("Player life : ", health)
 	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+		
+func _process(delta):
+	if is_dodging:
+		dodge_progress += delta / dodge_duration
+		
+		if dodge_progress >= 1.0:
+			dodge_progress = 1.0
+			is_dodging = false
+			position = original_position
+			dodge_cooldown = true
+			await get_tree().create_timer(1.0).timeout
+			if is_inside_tree():
+				dodge_cooldown = false
+			return
+		
+		var t = dodge_progress
+		var height = +150
+		position.y = original_position.y + (4 * height * t * (t - 1))
