@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://g3iu80jf5jj6" path="res://scripts/player.gd" id="3_iywne"]
 [ext_resource type="Script" uid="uid://vhi1c8r80jk2" path="res://scripts/ui.gd" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://wdvxpghswl2a" path="res://assets/sprites/tableau.png" id="4_u5sy4"]
+[ext_resource type="Script" uid="uid://br8v4rgqst84f" path="res://scripts/shield.gd" id="5_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://u1vbkh5mpist" path="res://assets/sprites/peintre_attack.png" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://g6ggtegdspm1" path="res://scripts/shield_visual.gd" id="6_vtaks"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gee14"]
 animations = [{
@@ -216,9 +218,12 @@ position = Vector2(-167, 97.00001)
 scale = Vector2(0.42456055, 0.40551758)
 sprite_frames = SubResource("SpriteFrames_gee14")
 
-[node name="Node2D" type="Node2D" parent="Boss" unique_id=1507619061]
+[node name="Shield" type="Node2D" parent="Boss" unique_id=956092113]
+script = ExtResource("5_0tnpc")
 
-[node name="ColorRect" type="Node2D" parent="Boss/Node2D" unique_id=950042170]
+[node name="ShieldVisual" type="Node2D" parent="Boss/Shield" unique_id=1298462549]
+position = Vector2(-169, 62)
+script = ExtResource("6_vtaks")
 
 [node name="Player" type="Node2D" parent="." unique_id=1426540233]
 position = Vector2(200, 400)
