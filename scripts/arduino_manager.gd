@@ -151,6 +151,12 @@ func send_ping() -> void:
 func send_vibration(duration_ms: int) -> void:
 	_send("vib:" + str(duration_ms))
 
+func send_led_mapping(led1_color: int, led2_color: int, led3_color: int) -> void:
+	_send("leds:%d,%d,%d" % [led1_color, led2_color, led3_color])
+
+func send_final() -> void:
+	_send("final")
+
 func stop_vibration() -> void:
 	_send("vib:0")
 
@@ -164,3 +170,4 @@ func _send(cmd: String) -> void:
 func _exit_tree() -> void:
 	if serial and serial.is_open():
 		serial.close()
+	ArduinoManager.send_final()

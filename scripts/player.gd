@@ -19,10 +19,13 @@ func _ready():
 	color_mechanic = get_node("../ColorMechanic")
 	color_mechanic.combo_success.connect(_on_success)
 	color_mechanic.combo_fail.connect(_on_fail)
+	color_mechanic.shield_exploded.connect(_on_shield_exploded)
+	color_mechanic.shield_broken.connect(_on_shield_broken)
 	anim.play("idle")  # ← idle au démarrage
 	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	ArduinoManager.button_event.connect(_on_arduino_button_event)
 	ArduinoManager.ldr_changed.connect(_on_arduino_ldr_changed)
+	ArduinoManager.send_led_mapping(0, 2, 1)
 	
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -50,25 +53,38 @@ func _input(event):
 func _press_button(btn: int):
 	if btn not in pressed_buttons:
 		pressed_buttons.append(btn)
+
+	# Vérifie couleurs de base
 	if color_mechanic.is_active:
 		if color_mechanic.check_input(pressed_buttons):
 			color_mechanic.is_active = false
 			color_mechanic.emit_signal("combo_success", color_mechanic.current_color)
+			pressed_buttons.clear()
+			return
+
+	# Vérifie shield séparément
+	if color_mechanic.shield_active:
+		if color_mechanic.check_shield_input(pressed_buttons):
+			color_mechanic.shield_active = false
+			color_mechanic.emit_signal("shield_broken")
+			pressed_buttons.clear()
 
 func _simple_attack():
 	if attack_cooldown:
 		return
 	attack_cooldown = true
-	anim.play("attack")
-	#$FmodEventEmitter2D.set_parameter("Attack", 0.0)
-	#$FmodEventEmitter2D.play()
-	#FmodServer.play_one_shot_with_params("event:/Attack", {"Attack": 0.0})
+	anim.play("attack")  # ← animation joue toujours
+	
+	# 0 dégâts si shield actif
+	if color_mechanic.shield_active:
+		print("Shield actif, 0 dégâts !")
+		return
+	
 	var damage = 2000
 	boss_health -= damage
 	boss_health = clamp(boss_health, 0, 1000000)
 	special_charge += 8
 	special_charge = clamp(special_charge, 0, 100)
-	print("Attaque simple — dégâts : ", damage, " | Charge : ", special_charge)
 	if boss_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/victory.tscn")
 		return
@@ -101,11 +117,15 @@ func _dodge():
 
 func _on_success(_color):
 	anim.play("color_attack")
-	boss_health -= 50000
+	var damage = 50000
+	# 25% de dégâts en moins si shield actif
+	if color_mechanic.shield_active:
+		damage = int(damage * 0.75)
+		print("Shield actif, dégâts réduits : ", damage)
+	boss_health -= damage
 	boss_health = clamp(boss_health, 0, 1000000)
 	special_charge += 25
 	special_charge = clamp(special_charge, 0, 100)
-	print("Boss life : ", boss_health, " | Charge : ", special_charge)
 	if boss_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/victory.tscn")
 
@@ -154,7 +174,18 @@ func take_fatal_damage():
 	_flash_damage()
 	health = 0
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+	
+func _on_shield_exploded():
+	health -= 30
+	health = clamp(health, 0, 100)
+	_flash_damage()
+	print("Shield explosé ! Vie joueur : ", health)
+	if health <= 0:
+		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
+func _on_shield_broken():
+	print("Shield détruit !")
+	# bonus éventuel ici
 
 func _process(delta):
 	if is_dodging:

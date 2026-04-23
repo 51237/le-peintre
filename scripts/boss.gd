@@ -13,6 +13,8 @@ var quick_attack_interval = 4
 var heavy_attack_interval = 10.0
 var color_attack_interval = 2.5
 var color_attack_timer = 0.0
+var shield_timer = 0.0
+var shield_interval = 20.0 
 
 var projectile_scene = preload("res://scenes/projectile.tscn")
 var heavy_projectile_scene = preload("res://scenes/heavy_projectile.tscn")
@@ -24,9 +26,12 @@ func _ready():
 	quick_attack_timer = quick_attack_interval
 	heavy_attack_timer = heavy_attack_interval
 	color_attack_timer = color_attack_interval
+	color_mechanic.shield_broken.connect(_on_shield_broken)
+	color_mechanic.shield_exploded.connect(_on_shield_exploded_boss)
+	shield_timer = 15.0
 
 func _process(delta):
-	# Attaques rapides et lourdes continuent même si combo actif
+	# Attaques normales
 	quick_attack_timer -= delta
 	if quick_attack_timer <= 0:
 		quick_attack_timer = quick_attack_interval
@@ -37,14 +42,19 @@ func _process(delta):
 		heavy_attack_timer = heavy_attack_interval
 		_heavy_attack()
 	
-	# Nouvelles couleurs bloquées si combo déjà actif
-	if color_mechanic.is_active:
-		return
+	# Couleurs de base — indépendant du shield
+	if not color_mechanic.is_active:
+		color_attack_timer -= delta
+		if color_attack_timer <= 0:
+			color_attack_timer = color_attack_interval
+			_launch_base_color_attack()
 	
-	color_attack_timer -= delta
-	if color_attack_timer <= 0:
-		color_attack_timer = color_attack_interval
-		_launch_color_attack()
+	# Shield — indépendant des couleurs de base
+	if not color_mechanic.shield_active:
+		shield_timer -= delta
+		if shield_timer <= 0:
+			shield_timer = shield_interval
+			_launch_shield()
 
 func _quick_attack():
 	var projectile = projectile_scene.instantiate()
@@ -65,7 +75,7 @@ func _heavy_attack():
 	print("Attaque lourde lancée !")
 
 func _on_combo_success(_color):
-	shield.flash_and_hide()
+	pass
 
 func _launch_color_attack():
 	var random_color = randi() % 6
@@ -75,3 +85,22 @@ func _launch_color_attack():
 	if color_mechanic.is_combo_color():
 		var shield_color = color_mechanic.get_shield_color()
 		shield.show_shield(shield_color)
+		
+func _launch_base_color_attack():
+	var random_color = randi() % 3  # 0, 1, 2 = RED, BLUE, GREEN seulement
+	color_mechanic.start_attack(random_color)
+	print("Boss couleur de base : ", random_color)
+
+func _launch_shield():
+	var shield_colors = [3, 4, 5]  # PURPLE, CYAN, YELLOW
+	var random_shield = shield_colors[randi() % 3]
+	color_mechanic.start_shield(random_shield)
+	var shield_color = color_mechanic.get_shield_color()
+	$Shield.show_shield(shield_color)
+	print("Boss active son shield !")
+
+func _on_shield_broken():
+	$Shield.flash_and_hide()
+
+func _on_shield_exploded_boss():
+	$Shield.flash_and_hide()
