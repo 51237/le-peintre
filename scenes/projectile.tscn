@@ -1,14 +1,23 @@
 [gd_scene format=3 uid="uid://cvr5jo8go3wb3"]
 
 [ext_resource type="Script" uid="uid://xurjgs04dbj0" path="res://scripts/projectile.gd" id="1_q3m7n"]
+[ext_resource type="Texture2D" uid="uid://dw3a1r7ducnfg" path="res://assets/vfx/orbe_soleil.png" id="2_q3m7n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_softn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q3m7n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Projectile" type="Node2D" unique_id=1108005093]
 script = ExtResource("1_q3m7n")
 
-[node name="Sprite" type="ColorRect" parent="." unique_id=829681487]
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
-color = Color(0.9627431, 0.8937523, 0.98705953, 1)
-metadata/_edit_use_anchors_ = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1441271744]
+position = Vector2(6.000002, 4.0000005)
+scale = Vector2(0.23624997, 0.20249997)
+sprite_frames = SubResource("SpriteFrames_softn")

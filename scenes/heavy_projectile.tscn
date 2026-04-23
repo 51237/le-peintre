@@ -1,10 +1,23 @@
 [gd_scene format=3 uid="uid://veoxjylsrtgx"]
 
 [ext_resource type="Script" uid="uid://xurjgs04dbj0" path="res://scripts/projectile.gd" id="1_cl038"]
+[ext_resource type="Texture2D" uid="uid://c7hb8krmjb763" path="res://assets/vfx/orbe_tsp.png" id="2_mp05j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mp05j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mp05j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="HeavyProjectile" type="Node2D" unique_id=564381318]
 script = ExtResource("1_cl038")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=883125838]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1577062684]
+position = Vector2(4.5, 1.7500062)
+scale = Vector2(0.5225, 0.51125)
+sprite_frames = SubResource("SpriteFrames_mp05j")
