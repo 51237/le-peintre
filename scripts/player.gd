@@ -22,7 +22,8 @@ func _ready():
 	anim.play("idle")  # ← idle au démarrage
 	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	ArduinoManager.button_event.connect(_on_arduino_button_event)
-
+	ArduinoManager.ldr_changed.connect(_on_arduino_ldr_changed)
+	
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_A:
@@ -111,25 +112,50 @@ func _on_success(_color):
 func _on_fail():
 	health -= 20
 	health = clamp(health, 0, 100)
+	ArduinoManager.send_vibration(200)
 	_flash_damage()
 	print("Player life : ", health)
 	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
-
-func _on_arduino_button_event(button_name: String, pressed: bool) -> void:
-	if button_name == "button1" and pressed:
-		_simple_attack()
 		
+		
+func _on_arduino_button_event(button_name: String, pressed: bool) -> void:
+	if not pressed:
+		match button_name:
+			"button1":
+				pressed_buttons.erase(0)
+			"button2":
+				pressed_buttons.erase(1)
+			"button3":
+				pressed_buttons.erase(2)
+		return
+
+	match button_name:
+		"button1":
+			_press_button(0)
+		"button2":
+			_press_button(1)
+		"button3":
+			_press_button(2)
+		"button4":
+			_simple_attack()
+
+func _on_arduino_ldr_changed(dark: bool) -> void:
+	if dark:
+		_dodge()
+
 func _flash_damage():
 	anim.modulate = Color(1, 0, 0, 1)
 	await get_tree().create_timer(0.1).timeout
 	anim.modulate = Color(1, 1, 1, 1)
-	
+
 func take_fatal_damage():
+	ArduinoManager.send_vibration(200)
 	_flash_damage()
 	health = 0
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
-		
+
+
 func _process(delta):
 	if is_dodging:
 		dodge_progress += delta / dodge_duration
