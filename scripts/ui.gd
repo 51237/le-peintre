@@ -3,19 +3,19 @@ extends CanvasLayer
 const COLOR_NAMES = {
 	0: "ROUGE",
 	1: "BLEU",
-	2: "JAUNE",
+	2: "VERT",
 	3: "VIOLET",
-	4: "ORANGE",
-	5: "VERT"
+	4: "CYAN",
+	5: "JAUNE"
 }
 
 const COLOR_VALUES = {
-	0: Color(0.85, 0.2, 0.2),
-	1: Color(0.2, 0.4, 0.85),
-	2: Color(0.95, 0.85, 0.1),
-	3: Color(0.6, 0.2, 0.85),
-	4: Color(0.95, 0.5, 0.1),
-	5: Color(0.2, 0.75, 0.3)
+	0: Color(1.0, 0.0, 0.0, 1.0),
+	1: Color(0.0, 0.0, 1.0, 1.0),
+	2: Color(0.0, 1.0, 0.0, 1.0), 
+	3: Color(1.0, 0.0, 1.0, 1.0),
+	4: Color(0.0, 1.0, 1.0, 1.0),
+	5: Color(0.949, 1.0, 0.0, 1.0)
 }
 
 var color_mechanic
