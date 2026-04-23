@@ -5,7 +5,19 @@
 [ext_resource type="Script" uid="uid://cgfyyhu5i5v5l" path="res://scripts/boss.gd" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://g3iu80jf5jj6" path="res://scripts/player.gd" id="3_iywne"]
 [ext_resource type="Script" uid="uid://vhi1c8r80jk2" path="res://scripts/ui.gd" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://wdvxpghswl2a" path="res://assets/sprites/tableau.png" id="4_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://u1vbkh5mpist" path="res://assets/sprites/peintre_attack.png" id="5_p57ef"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gee14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_u5sy4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p57ef"]
 atlas = ExtResource("5_p57ef")
@@ -199,40 +211,24 @@ script = ExtResource("1_lnu2h")
 position = Vector2(800, 200)
 script = ExtResource("2_lbhrr")
 
-[node name="Sprite" type="ColorRect" parent="Boss" unique_id=1808727692]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -421.0
-offset_top = -93.0
-offset_right = 95.0
-offset_bottom = 239.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.6651851, 0.24780053, 0.24780053, 1)
+[node name="Sprite" type="AnimatedSprite2D" parent="Boss" unique_id=1786111206]
+position = Vector2(-167, 97.00001)
+scale = Vector2(0.42456055, 0.40551758)
+sprite_frames = SubResource("SpriteFrames_gee14")
+
+[node name="Node2D" type="Node2D" parent="Boss" unique_id=1507619061]
+
+[node name="ColorRect" type="Node2D" parent="Boss/Node2D" unique_id=950042170]
 
 [node name="Player" type="Node2D" parent="." unique_id=1426540233]
 position = Vector2(200, 400)
 script = ExtResource("3_iywne")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1788796783]
-position = Vector2(429.00003, 168.00002)
+position = Vector2(444.00003, 174.00002)
 scale = Vector2(0.63098955, 0.7002122)
 sprite_frames = SubResource("SpriteFrames_ir15t")
 animation = &"attack"
-
-[node name="FmodListener2D" type="FmodListener2D" parent="Player" unique_id=1170082835]
-position = Vector2(-200, -400)
-
-[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="Player" unique_id=1929891227]
-event_name = "event:/Attack"
-event_guid = "{29faecdc-1da3-49ff-a768-16dd80f65e17}"
-fmod_parameters/Attack/id = 7893992033020563427
-fmod_parameters/Attack = "Value A"
-fmod_parameters/Attack/labels = PackedStringArray("Value A")
-fmod_parameters/Attack/variant_type = 4
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=445937826]
 script = ExtResource("4_lbhrr")
@@ -303,6 +299,3 @@ offset_top = 530.0
 offset_right = 1250.0
 offset_bottom = 557.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_p57ef")
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=1557681322]
-bank_paths = ["res:///Master.bank", "res:///Master.strings.bank"]

@@ -35,6 +35,16 @@ func check_input(pressed_buttons: Array) -> bool:
 				return false
 		return true
 	return false
+	
+func is_combo_color() -> bool:
+	return current_color in [PaintColor.PURPLE, PaintColor.ORANGE, PaintColor.GREEN]
+
+func get_shield_color() -> Color:
+	match current_color:
+		PaintColor.PURPLE: return Color(0.5, 0, 0.5)
+		PaintColor.ORANGE: return Color(1, 0.5, 0)
+		PaintColor.GREEN:  return Color(0, 1, 0)
+	return Color(1, 1, 1)
 
 func _process(delta):
 	if not is_active:

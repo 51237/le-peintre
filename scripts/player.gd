@@ -57,10 +57,10 @@ func _press_button(btn: int):
 func _simple_attack():
 	if attack_cooldown:
 		return
-	attack_cooldown = true  # ← bloque immédiatement
+	attack_cooldown = true
 	anim.play("attack")
-	$FmodEventEmitter2D.set_parameter("Attack", 0.0)
-	$FmodEventEmitter2D.play()
+	#$FmodEventEmitter2D.set_parameter("Attack", 0.0)
+	#$FmodEventEmitter2D.play()
 	#FmodServer.play_one_shot_with_params("event:/Attack", {"Attack": 0.0})
 	var damage = 2000
 	boss_health -= damage

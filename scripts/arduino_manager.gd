@@ -26,6 +26,9 @@ var timer_heartbeat_max: float = 2.0
 var last_port_name_used: String = ""
 
 func _ready() -> void:
+	if not ClassDB.class_exists("GdSerial"):
+		push_warning("[Arduino] Plugin GdSerial non disponible, Arduino désactivé")
+		return
 	serial = GdSerial.new()
 	serial.set_baud_rate(BAUD_RATE)
 	serial.set_timeout(10)
