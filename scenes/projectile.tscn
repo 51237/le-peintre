@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cvr5jo8go3wb3"]
 
 [ext_resource type="Script" uid="uid://xurjgs04dbj0" path="res://scripts/projectile.gd" id="1_q3m7n"]
-[ext_resource type="Texture2D" uid="uid://dw3a1r7ducnfg" path="res://assets/vfx/orbe_soleil.png" id="2_q3m7n"]
+[ext_resource type="Texture2D" uid="uid://cyfnuf613ih4d" path="res://assets/vfx/soleil_single_256x.png" id="2_q3m7n"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_softn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3m7n"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_q3m7n")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -17,7 +17,7 @@ animations = [{
 [node name="Projectile" type="Node2D" unique_id=1108005093]
 script = ExtResource("1_q3m7n")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1441271744]
-position = Vector2(6.000002, 4.0000005)
-scale = Vector2(0.23624997, 0.20249997)
-sprite_frames = SubResource("SpriteFrames_softn")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2108373575]
+position = Vector2(37, 42)
+scale = Vector2(0.28515625, 0.296875)
+sprite_frames = SubResource("SpriteFrames_q3m7n")
