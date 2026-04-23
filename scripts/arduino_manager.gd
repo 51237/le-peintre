@@ -157,6 +157,14 @@ func send_led_mapping(led1_color: int, led2_color: int, led3_color: int) -> void
 func send_final() -> void:
 	_send("final")
 
+
+func _game_color_to_arduino_color(game_color: int) -> int:
+	match game_color:
+		0: return 0 # RED -> rouge Arduino
+		1: return 2 # BLUE -> bleu Arduino
+		2: return 1 # GREEN -> vert Arduino
+	return 0
+
 func stop_vibration() -> void:
 	_send("vib:0")
 

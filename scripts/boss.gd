@@ -15,6 +15,8 @@ var color_attack_timer = 0.0
 var projectile_scene = preload("res://scenes/projectile.tscn")
 var heavy_projectile_scene = preload("res://scenes/heavy_projectile.tscn")
 
+signal button_mapping_changed(mapping: Array)
+
 func _ready():
 	player = get_node("../Player")
 	color_mechanic = get_node("../ColorMechanic")
@@ -22,7 +24,7 @@ func _ready():
 	color_mechanic.combo_fail.connect(_on_combo_fail)
 	quick_attack_timer = quick_attack_interval
 	heavy_attack_timer = heavy_attack_interval
-	color_attack_timer = 3
+	color_attack_timer = 5
 
 func _process(delta):
 	quick_attack_timer -= delta
@@ -41,6 +43,12 @@ func _process(delta):
 			color_attack_timer = color_attack_interval
 			_launch_color_attack()
 
+func _generate_random_mapping() -> Array:
+	var mapping = [0, 1, 2]
+	mapping.shuffle()
+	return mapping
+	
+
 func _quick_attack():
 	var projectile = projectile_scene.instantiate()
 	get_parent().add_child(projectile)
@@ -58,11 +66,13 @@ func _heavy_attack():
 	projectile.init(spawn_pos, target_pos, 20, Vector2(650, 250))
 
 func _launch_color_attack():
-	var random_color = randi() % 6  # toutes les 6 couleurs
+	var new_mapping = _generate_random_mapping()
+	button_mapping_changed.emit(new_mapping)
+
+	var random_color = randi() % 6
 	color_mechanic.start_attack(random_color)
-	# Affiche le shield avec la couleur du combo
 	shield.show_shield(color_mechanic.get_color())
-	print("Boss lance couleur : ", random_color)
+	print("Boss lance couleur : ", random_color, " | Mapping : ", new_mapping)
 
 func _on_combo_success(_color):
 	shield.flash_and_hide()
