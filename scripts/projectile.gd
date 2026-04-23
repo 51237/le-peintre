@@ -40,6 +40,7 @@ func _on_hit():
 	# ICI les dégâts — en dehors du if !
 	player.health -= damage
 	player.health = clamp(player.health, 0, 100)
+	player._flash_damage()
 	print("Projectile touche le joueur ! Vie : ", player.health)
 	if player.health <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")

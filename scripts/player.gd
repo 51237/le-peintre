@@ -16,15 +16,12 @@ var dodge_duration = 0.6  # durée du saut en secondes
 @onready var anim = $AnimatedSprite2D
 
 func _ready():
-	#FmodServer.load_bank("res://Master.bank", FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
-	#FmodServer.load_bank("res://Master.strings.bank", FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
 	color_mechanic = get_node("../ColorMechanic")
 	color_mechanic.combo_success.connect(_on_success)
 	color_mechanic.combo_fail.connect(_on_fail)
-	anim.play("attack")  # voudrait idle
+	anim.play("idle")  # ← idle au démarrage
 	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	ArduinoManager.button_event.connect(_on_arduino_button_event)
-	anim.play("idle")  # ← idle au démarrage
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -76,15 +73,15 @@ func _simple_attack():
 		return
 
 func _on_animated_sprite_2d_animation_finished():
-	print("animation finie : ", anim.animation)
-	if anim.animation == "attack":
-		anim.play("idle")  # ← retour à idle
+	if anim.animation == "attack" or anim.animation == "color_attack" or anim.animation == "ultimate_attack":
+		anim.play("idle")
 		attack_cooldown = false
 
 func _special_attack():
 	if special_charge < 100:
 		print("Charge insuffisante : ", special_charge, "/100")
 		return
+	anim.play("ultimate_attack")
 	boss_health -= 250000
 	boss_health = clamp(boss_health, 0, 1000000)
 	special_charge = 0
@@ -102,6 +99,7 @@ func _dodge():
 	print("Esquive !")
 
 func _on_success(_color):
+	anim.play("color_attack")
 	boss_health -= 50000
 	boss_health = clamp(boss_health, 0, 1000000)
 	special_charge += 25
@@ -113,6 +111,7 @@ func _on_success(_color):
 func _on_fail():
 	health -= 20
 	health = clamp(health, 0, 100)
+	_flash_damage()
 	print("Player life : ", health)
 	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
@@ -120,6 +119,16 @@ func _on_fail():
 func _on_arduino_button_event(button_name: String, pressed: bool) -> void:
 	if button_name == "button1" and pressed:
 		_simple_attack()
+		
+func _flash_damage():
+	anim.modulate = Color(1, 0, 0, 1)
+	await get_tree().create_timer(0.1).timeout
+	anim.modulate = Color(1, 1, 1, 1)
+	
+func take_fatal_damage():
+	_flash_damage()
+	health = 0
+	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 		
 func _process(delta):
 	if is_dodging:
