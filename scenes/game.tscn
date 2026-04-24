@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://6ymlk5m4nssd"]
 
+[ext_resource type="AudioStream" uid="uid://dg4qw4spue2e0" path="res://assets/sounds/musique hackaton cut.wav" id="1_37s47"]
 [ext_resource type="Texture2D" uid="uid://bloby7tuseqc2" path="res://assets/sprites/background_game.png" id="1_iywne"]
 [ext_resource type="Script" uid="uid://bh3qscanm4pb0" path="res://scripts/color_mechanic.gd" id="1_lnu2h"]
-[ext_resource type="AudioStream" uid="uid://bfwriyd6f3hss" path="res://assets/sounds/SON_HACKATON_2026_v3.wav" id="1_vtaks"]
 [ext_resource type="Script" uid="uid://crulacw8unnfu" path="res://scripts/music_manager.gd" id="2_kvpfn"]
 [ext_resource type="Script" uid="uid://cgfyyhu5i5v5l" path="res://scripts/boss.gd" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://g3iu80jf5jj6" path="res://scripts/player.gd" id="3_iywne"]
@@ -215,8 +215,8 @@ bg_color = Color(0.23668984, 0.7145914, 0.13824767, 1)
 [node name="Game" type="Node2D" unique_id=2047480733]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=376501501]
-stream = ExtResource("1_vtaks")
-volume_db = -25.271
+stream = ExtResource("1_37s47")
+volume_db = -18.467
 autoplay = true
 script = ExtResource("2_kvpfn")
 
@@ -240,6 +240,7 @@ stream = ExtResource("7_ca42v")
 
 [node name="SoundDodge" type="AudioStreamPlayer" parent="." unique_id=1760297968]
 stream = ExtResource("9_264po")
+volume_db = 3.649
 
 [node name="SoundBoom" type="AudioStreamPlayer" parent="." unique_id=1159742030]
 stream = ExtResource("10_1kice")
