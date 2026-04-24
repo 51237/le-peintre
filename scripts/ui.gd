@@ -26,6 +26,8 @@ func _ready():
 	player = get_node("../Player")
 	color_mechanic.combo_success.connect(_on_success)
 	color_mechanic.combo_fail.connect(_on_fail)
+	$ColorTarget.visible = false  # ← ici
+	$AttackLabel.visible = false  # ← ici
 	print("UI prêt - noeuds trouvés : ", color_mechanic, player)
 
 func format_number(n: int) -> String:
@@ -48,12 +50,12 @@ func _process(_delta):
 		var ratio = color_mechanic.time_left / color_mechanic.time_limit
 		$TimerBar.value = ratio * 100
 		var c = color_mechanic.current_color
-		$AttackLabel.text = "Couleur : " + COLOR_NAMES[c]
-		$ColorTarget.color = COLOR_VALUES[c]
+		# $AttackLabel.text = "Couleur : " + COLOR_NAMES[c]  # ← commenter
+		# $ColorTarget.color = COLOR_VALUES[c]               # ← commenter
 	else:
 		$TimerBar.value = 0
-		$AttackLabel.text = "..."
-		$ColorTarget.color = Color(0.2, 0.2, 0.2)
+		# $AttackLabel.text = "..."        # ← commenter
+		# $ColorTarget.color = Color(0.2, 0.2, 0.2)  # ← commenter
 
 	# Barres de vie
 	$PlayerLife.value = player.health
