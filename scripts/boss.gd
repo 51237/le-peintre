@@ -2,6 +2,10 @@ extends Node2D
 
 var color_mechanic
 var player
+@onready var sound_red = $"../SoundRed"
+@onready var sound_blue = $"../SoundBlue"
+@onready var sound_green = $"../SoundGreen"
+@onready var sound_melange = $"../SoundMelange"
 
 @onready var shield = $Shield
 
@@ -11,6 +15,10 @@ var quick_attack_interval = 4
 var heavy_attack_interval = 10.0
 var color_attack_interval = 2.5
 var color_attack_timer = 0.0
+var sound_attack_timer = 15.0
+var sound_attack_interval = 20.0
+var sound_attack_active = false
+signal sound_attack_started
 
 var projectile_scene = preload("res://scenes/projectile.tscn")
 var heavy_projectile_scene = preload("res://scenes/heavy_projectile.tscn")
@@ -42,6 +50,12 @@ func _process(delta):
 		if color_attack_timer <= 0:
 			color_attack_timer = color_attack_interval
 			_launch_color_attack()
+	
+	if not sound_attack_active:
+		sound_attack_timer -= delta
+		if sound_attack_timer <= 0:
+			sound_attack_timer = sound_attack_interval
+			_launch_sound_attack()
 
 func _generate_random_mapping() -> Array:
 	var mapping = [0, 1, 2]
@@ -73,9 +87,20 @@ func _launch_color_attack():
 	color_mechanic.start_attack(random_color)
 	shield.show_shield(color_mechanic.get_color())
 	print("Boss lance couleur : ", random_color, " | Mapping : ", new_mapping)
+	
+func _launch_sound_attack():
+	sound_attack_active = true
+	emit_signal("sound_attack_started")
+	await get_tree().create_timer(3.0).timeout  # 2s assombrissement + 1s esquive
+	sound_attack_active = false
 
-func _on_combo_success(_color):
+func _on_combo_success(color):
 	shield.flash_and_hide()
+	match color:
+			0: sound_red.play()
+			1: sound_blue.play()
+			2: sound_green.play()
+			3, 4, 5: sound_melange.play()
 
 func _on_combo_fail():
 	shield.flash_and_hide()

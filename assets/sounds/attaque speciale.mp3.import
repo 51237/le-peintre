@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://84582cpsb6i0"
+path="res://.godot/imported/attaque speciale.mp3-f3b0351505cd8a151fdbd3d4128ac062.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/attaque speciale.mp3"
+dest_files=["res://.godot/imported/attaque speciale.mp3-f3b0351505cd8a151fdbd3d4128ac062.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var sound_damage = $"../SoundDamage"
+
 var start_pos = Vector2.ZERO
 var end_pos = Vector2.ZERO
 var control_point = Vector2.ZERO
@@ -40,6 +42,7 @@ func _on_hit():
 	# ICI les dégâts — en dehors du if !
 	player.health -= damage
 	player.health = clamp(player.health, 0, 100)
+	sound_damage.play()
 	player._flash_damage()
 	print("Projectile touche le joueur ! Vie : ", player.health)
 	if player.health <= 0:

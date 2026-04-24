@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bauqmv2ljtoqp"
+path="res://.godot/imported/Son mort joueur.wav-581b4768302805cc4b1324838fe2d694.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Son mort joueur.wav"
+dest_files=["res://.godot/imported/Son mort joueur.wav-581b4768302805cc4b1324838fe2d694.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

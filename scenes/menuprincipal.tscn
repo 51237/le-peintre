@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://c2mwwem4efv1"]
 
+[ext_resource type="Texture2D" uid="uid://d0gn2b7tcjmki" path="res://assets/sprites/background_menu_2.0.png" id="1_cosuh"]
 [ext_resource type="Script" uid="uid://dg1rrbgbtcl01" path="res://scripts/menuprincipal.gd" id="1_ivno5"]
-[ext_resource type="Texture2D" uid="uid://emjin2yyuvf" path="res://assets/sprites/background_menu.png" id="1_x4nhi"]
+[ext_resource type="AudioStream" uid="uid://dguyrq34vtyr7" path="res://assets/sounds/Audio du menu.mp3" id="3_cosuh"]
+[ext_resource type="Script" uid="uid://crulacw8unnfu" path="res://scripts/music_manager.gd" id="4_xb6ls"]
 
 [node name="menuprincipal" type="TextureRect" unique_id=1821210080]
-offset_left = -27.0
-offset_top = -54.0
+offset_left = 4.0
+offset_top = -37.0
 offset_right = 1274.0
-offset_bottom = 815.0
-texture = ExtResource("1_x4nhi")
+offset_bottom = 766.0
+texture = ExtResource("1_cosuh")
 expand_mode = 1
 script = ExtResource("1_ivno5")
 
@@ -16,6 +18,10 @@ script = ExtResource("1_ivno5")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control" unique_id=1013033735]
+stream = ExtResource("3_cosuh")
+script = ExtResource("4_xb6ls")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=2110612189]
 layout_mode = 1
