@@ -178,4 +178,4 @@ func _send(cmd: String) -> void:
 func _exit_tree() -> void:
 	if serial and serial.is_open():
 		serial.close()
-	ArduinoManager.send_final()
+	send_final()

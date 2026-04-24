@@ -2,7 +2,6 @@ extends Node2D
 
 var color_mechanic
 var pressed_buttons = []
-var health = 100
 var boss_health = 1000000
 var attack_cooldown = false
 var special_charge = 0.0
@@ -14,6 +13,23 @@ var dodge_progress = 0.0
 var dodge_duration = 0.6
 
 var button_mapping = [0, 1, 2]
+
+var arduino_buttons_down := {
+	"button1": false,
+	"button2": false,
+	"button3": false
+}
+var special_combo_armed := true
+
+var health := 100:
+	set(value):
+		var old_health = health
+		health = clamp(value, 0, 100)
+		if health != old_health:
+			health_changed.emit(old_health, health)
+
+
+signal health_changed(old_health: int, new_health: int)
 
 @onready var anim = $AnimatedSprite2D
 
@@ -28,7 +44,7 @@ func _ready():
 	ArduinoManager.button_event.connect(_on_arduino_button_event)
 	ArduinoManager.ldr_changed.connect(_on_arduino_ldr_changed)
 	_apply_button_mapping([0, 1, 2])
-	
+	health_changed.connect(_on_health_changed)
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -110,12 +126,16 @@ func _on_success(_color):
 func _on_fail():
 	health -= 20
 	health = clamp(health, 0, 100)
-	ArduinoManager.send_vibration(200)
 	_flash_damage()
 	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
+
 func _on_arduino_button_event(button_name: String, pressed: bool) -> void:
+	if button_name in arduino_buttons_down:
+		arduino_buttons_down[button_name] = pressed
+		_check_arduino_special_combo()
+
 	if not pressed:
 		match button_name:
 			"button1":
@@ -170,6 +190,21 @@ func _apply_button_mapping(new_mapping: Array) -> void:
 	_update_led_mapping()
 	print("Nouveau mapping boutons : ", button_mapping)
 
+func _check_arduino_special_combo() -> void:
+	if (
+		arduino_buttons_down["button1"]
+		and arduino_buttons_down["button2"]
+		and arduino_buttons_down["button3"]
+	):
+		if special_combo_armed:
+			special_combo_armed = false
+			_special_attack()
+	else:
+		special_combo_armed = true
+
+func _on_health_changed(old_health: int, new_health: int) -> void:
+	if new_health < old_health:
+		ArduinoManager.send_vibration(200)
 
 func _flash_damage():
 	anim.modulate = Color(1, 0, 0, 1)
