@@ -10,12 +10,12 @@ func _ready() -> void:
 	ArduinoManager.arduino_connected.connect(_on_arduino_connected)
 	ArduinoManager.arduino_disconnected.connect(_on_arduino_disconnected)
 	StatusDot.modulate = Color.RED
-	StatusLabel.text = "Arduino pas connectée"
+	StatusLabel.text = "Manette non connectée"
 	StartButton.disabled = false
 
 func _on_arduino_connected() -> void:
 	StatusDot.modulate = Color.GREEN
-	StatusLabel.text = "Arduino connectée"
+	StatusLabel.text = "Manette connectée"
 	StartButton.disabled = false
 
 func _on_arduino_disconnected() -> void:
