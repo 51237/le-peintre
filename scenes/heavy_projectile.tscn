@@ -18,6 +18,6 @@ animations = [{
 script = ExtResource("1_cl038")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=881681561]
-position = Vector2(61.250008, 44.249996)
-scale = Vector2(0.5058593, 0.37304685)
+position = Vector2(63.250004, 50.750004)
+scale = Vector2(0.52148426, 0.42382815)
 sprite_frames = SubResource("SpriteFrames_mp05j")
