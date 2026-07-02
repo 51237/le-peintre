@@ -56,6 +56,7 @@ func _ready():
 	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	ArduinoManager.button_event.connect(_on_arduino_button_event)
 	ArduinoManager.ldr_changed.connect(_on_arduino_ldr_changed)
+<<<<<<< Updated upstream
 	_apply_button_mapping([0, 1, 2])
 	health_changed.connect(_on_health_changed)
 
@@ -74,6 +75,9 @@ func _ready():
 func _clear_darkness():
 	if canvas_layer and is_instance_valid(canvas_layer):
 		canvas_layer.queue_free()
+=======
+	ArduinoManager.send_led_mapping(0, 2, 1)
+>>>>>>> Stashed changes
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
