@@ -1,0 +1,162 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+
+msgid "Export Scene Package..."
+msgstr "Exporter un paquet de scène..."
+
+msgid "Import Scene Package..."
+msgstr "Importer un paquet de scène..."
+
+msgid "Save Scene Package"
+msgstr "Enregistrer le paquet de scène"
+
+msgid "Choose a Scene Package"
+msgstr "Choisir un paquet de scène"
+
+msgid "Scene Packages (*.zip)"
+msgstr "Paquets de scène (*.zip)"
+
+msgid "Export complete"
+msgstr "Export terminé"
+
+msgid "Export failed"
+msgstr "Échec de l'export"
+
+msgid "{count} files packaged"
+msgstr "{count} fichiers empaquetés"
+
+msgid "{count} warning(s)"
+msgstr "{count} avertissement(s)"
+
+msgid "Import Scene Package"
+msgstr "Importer un paquet de scène"
+
+msgid "Import"
+msgstr "Importer"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Godot version"
+msgstr "Version de Godot"
+
+msgid "Required plugins"
+msgstr "Plugins requis"
+
+msgid "Autoloads"
+msgstr "Autoloads"
+
+msgid "Project settings"
+msgstr "Paramètres du projet"
+
+msgid "Files"
+msgstr "Fichiers"
+
+msgid "Warnings from exporter"
+msgstr "Avertissements de l'exporteur"
+
+msgid "Import complete"
+msgstr "Import terminé"
+
+msgid "{count} files written"
+msgstr "{count} fichiers écrits"
+
+msgid "{count} autoloads registered (restart editor to activate)"
+msgstr "{count} autoloads enregistrés (redémarrer l'éditeur pour activer)"
+
+msgid "{count} project settings updated"
+msgstr "{count} paramètres de projet mis à jour"
+
+msgid "Next steps"
+msgstr "Étapes suivantes"
+
+msgid "Restart the editor to ensure plugins reload"
+msgstr "Redémarrer l'éditeur pour recharger les plugins"
+
+msgid "Status: OK"
+msgstr "Statut : OK"
+
+msgid "Will add"
+msgstr "Sera ajouté"
+
+msgid "Will overwrite"
+msgstr "Sera écrasé"
+
+msgid "Missing"
+msgstr "Manquant"
+
+msgid "Disabled"
+msgstr "Désactivé"
+
+msgid "Conflict"
+msgstr "Conflit"
+
+msgid "Skipped (target value kept)"
+msgstr "Ignoré (valeur cible conservée)"
+
+msgid "Cannot proceed — resolve errors first"
+msgstr "Impossible de continuer — résoudre les erreurs d'abord"
+
+msgid "No changes — package already matches target"
+msgstr "Aucun changement — le paquet correspond déjà à la cible"
+
+msgid "Review changes below before importing"
+msgstr "Examinez les changements ci-dessous avant d'importer"
+
+# --- Phase 7 additions ---
+
+msgid "Export Scene Package"
+msgstr "Exporter un paquet de scène"
+
+msgid "Export"
+msgstr "Exporter"
+
+msgid "Included"
+msgstr "Inclus"
+
+msgid "Excluded"
+msgstr "Exclu"
+
+msgid "Files ({count})"
+msgstr "Fichiers ({count})"
+
+msgid "Heads up"
+msgstr "À noter"
+
+msgid "Dynamic load() at {file}:{line} — {arg} cannot be followed automatically."
+msgstr "load() dynamique à {file}:{line} — {arg} ne peut pas être suivi automatiquement."
+
+msgid "{scene}: {files} files, {autoloads} autoloads, {plugins} plugins, {settings} settings. Uncheck items below to exclude them."
+msgstr "{scene} : {files} fichiers, {autoloads} autoloads, {plugins} plugins, {settings} paramètres. Décochez les éléments ci-dessous pour les exclure."
+
+msgid "Packaging scene..."
+msgstr "Empaquetage de la scène..."
+
+msgid "Importing package..."
+msgstr "Import du paquet..."
+
+msgid "Import failed"
+msgstr "Échec de l'import"
+
+msgid "Something went wrong:"
+msgstr "Un problème est survenu :"
+
+msgid "{count} files packaged."
+msgstr "{count} fichiers empaquetés."
+
+msgid "{count} warning(s):"
+msgstr "{count} avertissement(s) :"
+
+msgid "{count} files written."
+msgstr "{count} fichiers écrits."
+
+msgid "{count} autoloads registered (restart the editor to activate them)."
+msgstr "{count} autoloads enregistrés (redémarrez l'éditeur pour les activer)."
+
+msgid "{count} project settings updated."
+msgstr "{count} paramètres de projet mis à jour."
+
+msgid "Notes:"
+msgstr "Notes :"

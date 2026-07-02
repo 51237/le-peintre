@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dlpp2vdtnaljn"]
+
+[ext_resource type="Script" uid="uid://db241cbkod33x" path="res://scenes/tutoriel.gd" id="1_pxw0d"]
+
+[node name="tutoriel" type="CanvasLayer" unique_id=732583848]
+script = ExtResource("1_pxw0d")
+
+[node name="Panel" type="Panel" parent="." unique_id=1618259528]
+offset_top = 2.0
+offset_right = 1277.0
+offset_bottom = 722.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=2013327020]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 630.0
+offset_right = 1289.0
+offset_bottom = 788.0
+
+[node name="Suivant-btn" type="Button" parent="Panel" unique_id=656125509]
+layout_mode = 0
+offset_left = 1196.0
+offset_top = 674.0
+offset_right = 1262.0
+offset_bottom = 705.0
+theme_type_variation = &"FlatButton"
+text = "Suivant"
+
+[connection signal="pressed" from="Panel/Suivant-btn" to="." method="_on_suivantbtn_pressed"]
