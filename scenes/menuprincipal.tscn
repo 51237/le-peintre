@@ -4,20 +4,21 @@
 [ext_resource type="Script" uid="uid://dg1rrbgbtcl01" path="res://scripts/menuprincipal.gd" id="1_ivno5"]
 [ext_resource type="AudioStream" uid="uid://dguyrq34vtyr7" path="res://assets/sounds/Audio du menu.mp3" id="3_cosuh"]
 [ext_resource type="Script" uid="uid://crulacw8unnfu" path="res://scripts/music_manager.gd" id="4_xb6ls"]
+[ext_resource type="PackedScene" uid="uid://dlpp2vdtnaljn" path="res://scenes/tutoriel.tscn" id="5_xb6ls"]
 
 [node name="menuprincipal" type="TextureRect" unique_id=1821210080]
 offset_left = 4.0
-offset_top = -37.0
+offset_top = -2.0
 offset_right = 1274.0
-offset_bottom = 766.0
+offset_bottom = 719.0
 texture = ExtResource("1_cosuh")
 expand_mode = 1
 script = ExtResource("1_ivno5")
 
 [node name="Control" type="Control" parent="." unique_id=256615496]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 33.0
+offset_bottom = 43.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control" unique_id=1013033735]
 stream = ExtResource("3_cosuh")
@@ -31,9 +32,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 434.5
-offset_top = 434.5
+offset_top = 424.5
 offset_right = 813.5
-offset_bottom = 567.5
+offset_bottom = 640.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -62,6 +63,8 @@ layout_mode = 2
 [node name="StatusDot" type="Panel" parent="Control/VBoxContainer" unique_id=959122504]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="tutoriel" parent="Control/VBoxContainer" unique_id=732583848 instance=ExtResource("5_xb6ls")]
 
 [connection signal="button_down" from="Control/VBoxContainer/StartButton" to="." method="_on_startbtn_button_down"]
 [connection signal="button_down" from="Control/VBoxContainer/QuitButton" to="." method="_on_quitbtn_button_down"]
